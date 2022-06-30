@@ -16,7 +16,7 @@ fetch(url+"/codes")
 .then(res=>res.json())
 .then(data=>{
     const items=data.supported_codes;
-    console.log(items)
+   
 let options;
     items.map((item)=>{
         options +=`<option value=${item[0]}>${item[1]}</option>`
@@ -26,3 +26,34 @@ let options;
     ListTwo.innerHTML=options;
 })
 // ------------------------------------------
+
+
+// calculate
+
+calculate.addEventListener("click",function(){
+
+    const currencyOne=curOne.value;
+  
+    const currencyTwo=curTwo.value;
+
+    const currenyAmount=amount.value;
+    
+    const newUrl=url+"/latest/"+currencyOne;
+    console.log(newUrl)
+    fetch(url+"/latest/"+currencyOne)
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        const calc=data.conversion_rates[currencyTwo]*amount;
+        result.innerHTML=`
+        <div class="card border-primary">
+                    <div class="card-body text-center">
+                       ${calc}
+                    </div>
+                </div> -->
+        
+        `
+       
+    })
+})
+
